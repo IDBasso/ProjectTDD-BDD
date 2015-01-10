@@ -34,6 +34,20 @@
                ReferencedContainer = "container:ProjectTDD+BDD.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "62AF30FC1A61703100331482"
+               BuildableName = "Acceptance Tests.xctest"
+               BlueprintName = "Acceptance Tests"
+               ReferencedContainer = "container:ProjectTDD+BDD.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -49,6 +63,16 @@
                BlueprintIdentifier = "62C113671A5C595A0029A264"
                BuildableName = "ProjectTDD+BDDTests.xctest"
                BlueprintName = "ProjectTDD+BDDTests"
+               ReferencedContainer = "container:ProjectTDD+BDD.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "62AF30FC1A61703100331482"
+               BuildableName = "Acceptance Tests.xctest"
+               BlueprintName = "Acceptance Tests"
                ReferencedContainer = "container:ProjectTDD+BDD.xcodeproj">
             </BuildableReference>
          </TestableReference>

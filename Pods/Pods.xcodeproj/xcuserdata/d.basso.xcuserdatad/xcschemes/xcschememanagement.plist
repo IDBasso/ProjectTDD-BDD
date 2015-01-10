@@ -4,25 +4,35 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>ProjectTDD+BDD.xcscheme</key>
+		<key>Pods-Acceptance Tests-KIF.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>0</integer>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Acceptance Tests-OCMock.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Acceptance Tests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>62AF30FC1A61703100331482</key>
+		<key>2A6F4F6A848FB90E22FBE698</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>62C1134E1A5C595A0029A264</key>
+		<key>C98DCD2B91B73485058D024A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>62C113671A5C595A0029A264</key>
+		<key>D9E75B9F277BEA8E5F92CE21</key>
 		<dict>
 			<key>primary</key>
 			<true/>

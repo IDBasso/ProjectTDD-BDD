@@ -35,17 +35,17 @@
   // Do any additional setup after loading the view, typically from a nib.
 }
 
+
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+-(void)dealloc
 {
   [[NSNotificationCenter defaultCenter] removeObserver:self
                                                   name:UITextFieldTextDidChangeNotification
                                                 object:nil];
-  [super viewDidDisappear:animated];
 }
 
 #pragma mark - login button
@@ -81,6 +81,21 @@
 - (void)onTextFieldDidChange:(id __unused)sender
 {
   [self updateLoginButton];
+}
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+  UITextField *usernameTextfield = [self usernameTextField];
+  UITextField *passwordTextfield = [self passwordTexField];
+  
+  [textField resignFirstResponder];
+  
+  if ( usernameTextfield == textField ) {
+    [passwordTextfield becomeFirstResponder];
+  }
+  
+  return YES;
 }
 
 
