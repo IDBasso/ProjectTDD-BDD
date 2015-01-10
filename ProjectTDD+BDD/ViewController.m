@@ -32,7 +32,15 @@
   
   [self setupLoginButton];
   
-  // Do any additional setup after loading the view, typically from a nib.
+  self.usernameTextField.accessibilityLabel = @"username";
+  self.passwordTexField.accessibilityLabel = @"password";
+  self.view.accessibilityLabel = @"login_view";
+
+  [self.inputsErrorMessage setHidden:YES];
+  
+  [self.usernameTextField setIsAccessibilityElement:YES];
+  [self.passwordTexField setIsAccessibilityElement:YES];
+  [self.view setIsAccessibilityElement:YES];
 }
 
 
@@ -51,16 +59,19 @@
 #pragma mark - login button
 -(void)setupLoginButton
 {
-  _loginButton = [UIBarButtonItem buttonWithTitle:@"login" selector:nil target:self];
+  _loginButton = [UIBarButtonItem buttonWithTitle:@"login" selector:@selector(login) target:self];
+  [_loginButton setIsAccessibilityElement:YES];
+  _loginButton.accessibilityLabel = @"login";
   self.navigationItem.rightBarButtonItem = _loginButton;
   [self updateLoginButton];
 }
 
--(void)updateLoginButton
+-(BOOL)updateLoginButton
 {
   //TODO: Check if user name and password are filled in
   BOOL userDataIsFilledIn = (self.usernameTextField.text.length >= 1) && [self.usernameTextField.text isValidEmail] && (self.passwordTexField.text.length >= 1);
   [_loginButton setEnabled:userDataIsFilledIn];
+  return userDataIsFilledIn;
 }
 
 #pragma mark - textfield delegate methods
@@ -92,11 +103,53 @@
   [textField resignFirstResponder];
   
   if ( usernameTextfield == textField ) {
+    [self checkUsername];
     [passwordTextfield becomeFirstResponder];
+  }else
+  {
+    [self checkPassword];
+  }
+  
+  if ([self updateLoginButton]) {
+    [self login];
   }
   
   return YES;
 }
 
+-(void)checkUsername
+{
+  UITextField *usernameTextfield = [self usernameTextField];
+  if (![usernameTextfield.text isValidEmail]) {
+    self.inputsErrorMessage.text = NSLocalizedString(@"Wrong email format", nil);
+    self.inputsErrorMessage.textColor = [UIColor redColor];
+    [self.inputsErrorMessage setHidden:NO];
+    self.usernameTextField.textColor = [UIColor redColor];
+    [self performSelector:@selector(hideErrorMessageWithTextfield:) withObject:usernameTextfield afterDelay:3];
+  }
+}
+
+-(void)checkPassword
+{
+  UITextField *password = [self passwordTexField];
+  if (password.text.length < 6) {
+    self.inputsErrorMessage.text = NSLocalizedString(@"Password is to short (min 6 characters)", nil);
+    self.inputsErrorMessage.textColor = [UIColor redColor];
+    [self.inputsErrorMessage setHidden:NO];
+    self.passwordTexField.textColor = [UIColor redColor];
+    [self performSelector:@selector(hideErrorMessageWithTextfield:) withObject:password afterDelay:3];
+  }
+}
+
+-(void)hideErrorMessageWithTextfield:(UITextField*)textfield
+{
+  [self.inputsErrorMessage setHidden:YES];
+  textfield.textColor = [UIColor grayColor];
+}
+
+-(void)login
+{
+  NSLog(@"Logiiing");
+}
 
 @end
