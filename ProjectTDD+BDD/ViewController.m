@@ -7,15 +7,31 @@
 //
 
 #import "ViewController.h"
+#import "UIButton+BackgroundColor.h"
+#import "NSString+Email.h"
+#import "UIBarButtonItem+NavItem.h"
+#import "SignupViewController.h"
 
-@interface ViewController ()
+@interface ViewController () <UITextFieldDelegate>
 
 @end
 
 @implementation ViewController
+{
+  UIBarButtonItem *_loginButton;
+}
 
+#pragma mark - life cycle
 - (void)viewDidLoad {
   [super viewDidLoad];
+  self.title = NSLocalizedString(@"Hello World", nil);
+  self.usernameTextField.delegate = self;
+  self.passwordTexField.delegate = self;
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onTextFieldDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
+  
+  [self setupLoginButton];
+  
   // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -23,5 +39,49 @@
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
 }
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:UITextFieldTextDidChangeNotification
+                                                object:nil];
+  [super viewDidDisappear:animated];
+}
+
+#pragma mark - login button
+-(void)setupLoginButton
+{
+  _loginButton = [UIBarButtonItem buttonWithTitle:@"login" selector:nil target:self];
+  self.navigationItem.rightBarButtonItem = _loginButton;
+  [self updateLoginButton];
+}
+
+-(void)updateLoginButton
+{
+  //TODO: Check if user name and password are filled in
+  BOOL userDataIsFilledIn = (self.usernameTextField.text.length >= 1) && [self.usernameTextField.text isValidEmail] && (self.passwordTexField.text.length >= 1);
+  [_loginButton setEnabled:userDataIsFilledIn];
+}
+
+#pragma mark - textfield delegate methods
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+  NSUInteger newLength = [textField.text length] + [string length] - range.length;
+  UITextField *usernameTextfield = self.usernameTextField;
+  UITextField *passwordTextfield = self.passwordTexField;
+  
+  if ( (textField == usernameTextfield && newLength > 255)
+      || (textField == passwordTextfield && newLength > 255)) {
+    return NO;
+  }
+  
+  return YES;
+}
+
+- (void)onTextFieldDidChange:(id __unused)sender
+{
+  [self updateLoginButton];
+}
+
 
 @end

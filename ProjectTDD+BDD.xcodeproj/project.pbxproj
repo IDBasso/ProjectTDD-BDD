@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		62AABD121A5DCBC90064AF2C /* NSString+Email.m in Sources */ = {isa = PBXBuildFile; fileRef = 62AABD111A5DCBC90064AF2C /* NSString+Email.m */; };
+		62AABD181A5DCF680064AF2C /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62AABD171A5DCF680064AF2C /* SignupViewController.m */; };
+		62AABD1B1A5DD15D0064AF2C /* UIBarButtonItem+NavItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 62AABD1A1A5DD15D0064AF2C /* UIBarButtonItem+NavItem.m */; };
 		62C113551A5C595A0029A264 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C113541A5C595A0029A264 /* main.m */; };
 		62C113581A5C595A0029A264 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C113571A5C595A0029A264 /* AppDelegate.m */; };
 		62C1135B1A5C595A0029A264 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C1135A1A5C595A0029A264 /* ViewController.m */; };
@@ -14,6 +17,8 @@
 		62C113601A5C595A0029A264 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62C1135F1A5C595A0029A264 /* Images.xcassets */; };
 		62C113631A5C595A0029A264 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62C113611A5C595A0029A264 /* LaunchScreen.xib */; };
 		62C1136F1A5C595A0029A264 /* ProjectTDD_BDDTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C1136E1A5C595A0029A264 /* ProjectTDD_BDDTests.m */; };
+		62C1137A1A5C785B0029A264 /* UIButton+BackgroundColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C113791A5C785B0029A264 /* UIButton+BackgroundColor.m */; };
+		62C1137D1A5C7B8A0029A264 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C1137C1A5C7B8A0029A264 /* UIImage+Color.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +32,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		62AABD101A5DCBC90064AF2C /* NSString+Email.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Email.h"; sourceTree = "<group>"; };
+		62AABD111A5DCBC90064AF2C /* NSString+Email.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Email.m"; sourceTree = "<group>"; };
+		62AABD161A5DCF680064AF2C /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
+		62AABD171A5DCF680064AF2C /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
+		62AABD191A5DD15D0064AF2C /* UIBarButtonItem+NavItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+NavItem.h"; sourceTree = "<group>"; };
+		62AABD1A1A5DD15D0064AF2C /* UIBarButtonItem+NavItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+NavItem.m"; sourceTree = "<group>"; };
 		62C1134F1A5C595A0029A264 /* ProjectTDD+BDD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ProjectTDD+BDD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62C113531A5C595A0029A264 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62C113541A5C595A0029A264 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,6 +51,10 @@
 		62C113681A5C595A0029A264 /* ProjectTDD+BDDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ProjectTDD+BDDTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62C1136D1A5C595A0029A264 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62C1136E1A5C595A0029A264 /* ProjectTDD_BDDTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectTDD_BDDTests.m; sourceTree = "<group>"; };
+		62C113781A5C785B0029A264 /* UIButton+BackgroundColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+BackgroundColor.h"; sourceTree = "<group>"; };
+		62C113791A5C785B0029A264 /* UIButton+BackgroundColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+BackgroundColor.m"; sourceTree = "<group>"; };
+		62C1137B1A5C7B8A0029A264 /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
+		62C1137C1A5C7B8A0029A264 /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +100,16 @@
 				62C113571A5C595A0029A264 /* AppDelegate.m */,
 				62C113591A5C595A0029A264 /* ViewController.h */,
 				62C1135A1A5C595A0029A264 /* ViewController.m */,
+				62AABD161A5DCF680064AF2C /* SignupViewController.h */,
+				62AABD171A5DCF680064AF2C /* SignupViewController.m */,
+				62C113781A5C785B0029A264 /* UIButton+BackgroundColor.h */,
+				62C113791A5C785B0029A264 /* UIButton+BackgroundColor.m */,
+				62AABD191A5DD15D0064AF2C /* UIBarButtonItem+NavItem.h */,
+				62AABD1A1A5DD15D0064AF2C /* UIBarButtonItem+NavItem.m */,
+				62C1137B1A5C7B8A0029A264 /* UIImage+Color.h */,
+				62C1137C1A5C7B8A0029A264 /* UIImage+Color.m */,
+				62AABD101A5DCBC90064AF2C /* NSString+Email.h */,
+				62AABD111A5DCBC90064AF2C /* NSString+Email.m */,
 				62C1135C1A5C595A0029A264 /* Main.storyboard */,
 				62C1135F1A5C595A0029A264 /* Images.xcassets */,
 				62C113611A5C595A0029A264 /* LaunchScreen.xib */,
@@ -220,7 +245,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				62C1135B1A5C595A0029A264 /* ViewController.m in Sources */,
+				62C1137A1A5C785B0029A264 /* UIButton+BackgroundColor.m in Sources */,
+				62AABD121A5DCBC90064AF2C /* NSString+Email.m in Sources */,
+				62C1137D1A5C7B8A0029A264 /* UIImage+Color.m in Sources */,
+				62AABD1B1A5DD15D0064AF2C /* UIBarButtonItem+NavItem.m in Sources */,
 				62C113581A5C595A0029A264 /* AppDelegate.m in Sources */,
+				62AABD181A5DCF680064AF2C /* SignupViewController.m in Sources */,
 				62C113551A5C595A0029A264 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,6 +444,7 @@
 				62C113741A5C595A0029A264 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		62C113751A5C595A0029A264 /* Build configuration list for PBXNativeTarget "ProjectTDD+BDDTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +453,7 @@
 				62C113771A5C595A0029A264 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
