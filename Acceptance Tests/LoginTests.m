@@ -12,6 +12,7 @@
 #import <KIF.h>
 #import "ViewController.h"
 #import <OCMock/OCMock.h>
+#import <Parse/Parse.h>
 
 @interface LoginTests : KIFTestCase
 
@@ -99,11 +100,37 @@
   
   id loginControllerMock = [OCMockObject partialMockForObject:loginViewController];
   
-  [[loginControllerMock expect] login];
+//  [[loginControllerMock expect] login];
   [self testLoginIsEnabledWhenUsernameAndPasswordAreFilledIn];
   [tester tapViewWithAccessibilityLabel:@"done"];
   [loginControllerMock verify];
+  [tester tapViewWithAccessibilityLabel:@"OK"];
+}
 
+-(void)testLoginReturnsAccountWrongCredentials
+{
+  [self testLoginIsEnabledWhenUsernameAndPasswordAreFilledIn];
+  [tester tapViewWithAccessibilityLabel:@"login"];
+  [tester waitForViewWithAccessibilityLabel:@"Wrong username or password"];
+  [tester tapViewWithAccessibilityLabel:@"OK"];
+}
+
+-(void)testLoginReturnsAccountWrongPassword
+{
+  [tester enterText:@"d@basso.com" intoViewWithAccessibilityLabel:@"username"];
+  [tester enterText:@"1234567" intoViewWithAccessibilityLabel:@"password"];
+  [tester tapViewWithAccessibilityLabel:@"login"];
+  [tester waitForViewWithAccessibilityLabel:@"Wrong username or password"];
+  [tester tapViewWithAccessibilityLabel:@"OK"];
+}
+
+-(void)testLoginSuccessfullyPushNewViewController
+{
+  [tester enterText:@"d@basso.com" intoViewWithAccessibilityLabel:@"username"];
+  [tester enterText:@"123456" intoViewWithAccessibilityLabel:@"password"];
+  [tester tapViewWithAccessibilityLabel:@"login"];
+  [tester waitForViewWithAccessibilityLabel:@"loggedIn"];
+  [tester tapViewWithAccessibilityLabel:@"Hello World"];
 }
 
 #pragma mark - helper methods

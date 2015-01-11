@@ -11,6 +11,7 @@
 #import "NSString+Email.h"
 #import "UIBarButtonItem+NavItem.h"
 #import "SignupViewController.h"
+#import <Parse/Parse.h>
 
 @interface ViewController () <UITextFieldDelegate>
 
@@ -117,10 +118,19 @@
   return YES;
 }
 
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+  if (textField == self.usernameTextField && self.passwordTexField.text.length) {
+    [self checkPassword];
+  }else if (self.usernameTextField.text.length)
+    [self checkUsername];
+}
+
 -(void)checkUsername
 {
   UITextField *usernameTextfield = [self usernameTextField];
   if (![usernameTextfield.text isValidEmail]) {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
     self.inputsErrorMessage.text = NSLocalizedString(@"Wrong email format", nil);
     self.inputsErrorMessage.textColor = [UIColor redColor];
     [self.inputsErrorMessage setHidden:NO];
@@ -133,6 +143,7 @@
 {
   UITextField *password = [self passwordTexField];
   if (password.text.length < 6) {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
     self.inputsErrorMessage.text = NSLocalizedString(@"Password is to short (min 6 characters)", nil);
     self.inputsErrorMessage.textColor = [UIColor redColor];
     [self.inputsErrorMessage setHidden:NO];
@@ -149,7 +160,35 @@
 
 -(void)login
 {
-  NSLog(@"Logiiing");
+  [PFUser logInWithUsernameInBackground:self.usernameTextField.text password:self.passwordTexField.text block:^(PFUser *user, NSError *error) {
+    if (error) {
+      NSString *errorMessage;
+      switch (error.code) {
+        case 101:
+          errorMessage = @"Wrong username or password";
+          break;
+        case 100:
+          errorMessage = @"The connection to the server failed";
+          break;
+        case 1:
+          errorMessage = @"Server internal error";
+          break;
+        default:
+          break;
+      }
+      NSLog(@"error : %@", [error description]);
+      
+      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:errorMessage delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+      [alertView show];
+    }else
+    {
+      UIViewController *loggedInViewController = [[UIViewController alloc] init];
+      loggedInViewController.view.accessibilityLabel = @"loggedIn";
+      loggedInViewController.view.backgroundColor = [UIColor greenColor];
+      [loggedInViewController.view setIsAccessibilityElement:YES];
+      [self.navigationController pushViewController:loggedInViewController animated:YES];
+    }
+  }];
 }
 
 @end
