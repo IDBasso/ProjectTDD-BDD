@@ -12,6 +12,7 @@
 #import "UIBarButtonItem+NavItem.h"
 #import "SignupViewController.h"
 #import <Parse/Parse.h>
+#import "DBParseLoginController.h"
 
 @interface ViewController () <UITextFieldDelegate>
 
@@ -21,6 +22,8 @@
 {
   UIBarButtonItem *_loginButton;
 }
+
+@synthesize loginController = _loginController;
 
 #pragma mark - life cycle
 - (void)viewDidLoad {
@@ -160,7 +163,8 @@
 
 -(void)login
 {
-  [PFUser logInWithUsernameInBackground:self.usernameTextField.text password:self.passwordTexField.text block:^(PFUser *user, NSError *error) {
+  [self.loginController logInWithUsernameInBackground:self.usernameTextField.text password:self.passwordTexField.text block:^(PFUser * user, NSError * error)
+  {
     if (error) {
       NSString *errorMessage;
       switch (error.code) {
@@ -189,6 +193,19 @@
       [self.navigationController pushViewController:loggedInViewController animated:YES];
     }
   }];
+}
+
+-(id<DBLogin>)loginController
+{
+  if (!_loginController) {
+    _loginController = [[DBParseLoginController alloc] init];
+  }
+  return _loginController;
+}
+
+-(void)setLoginController:(id<DBLogin>)loginController
+{
+  _loginController = loginController;
 }
 
 @end

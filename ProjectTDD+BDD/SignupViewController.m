@@ -19,7 +19,7 @@
   self.title = NSLocalizedString(@"Sign up", nil);
   
   self.navigationItem.leftBarButtonItem = [UIBarButtonItem buttonWithTitle:@"cancel" selector:@selector(dismiss) target:self];
-  self.navigationItem.rightBarButtonItem = [UIBarButtonItem buttonWithTitle:@"next" selector:nil target:nil];
+  self.navigationItem.rightBarButtonItem = [UIBarButtonItem buttonWithTitle:@"signup" selector:nil target:nil];
   [self.navigationItem.rightBarButtonItem setEnabled:NO];
 
 }

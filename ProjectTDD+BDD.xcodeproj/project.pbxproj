@@ -36,6 +36,8 @@
 		62390A951A62B56400039560 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 62390A851A6290E700039560 /* libsqlite3.dylib */; };
 		62390A971A62B67600039560 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62390A961A62B67600039560 /* Social.framework */; };
 		62390A991A62B68D00039560 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62390A981A62B68D00039560 /* Accounts.framework */; };
+		62390A9B1A62E54700039560 /* SignupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 62390A9A1A62E54700039560 /* SignupTests.m */; };
+		62A1C8BE1A6458BA00012082 /* DBParseLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A1C8BD1A6458BA00012082 /* DBParseLoginController.m */; };
 		62AABD121A5DCBC90064AF2C /* NSString+Email.m in Sources */ = {isa = PBXBuildFile; fileRef = 62AABD111A5DCBC90064AF2C /* NSString+Email.m */; };
 		62AABD181A5DCF680064AF2C /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62AABD171A5DCF680064AF2C /* SignupViewController.m */; };
 		62AABD1B1A5DD15D0064AF2C /* UIBarButtonItem+NavItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 62AABD1A1A5DD15D0064AF2C /* UIBarButtonItem+NavItem.m */; };
@@ -86,6 +88,10 @@
 		62390A851A6290E700039560 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		62390A961A62B67600039560 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		62390A981A62B68D00039560 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		62390A9A1A62E54700039560 /* SignupTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupTests.m; sourceTree = "<group>"; };
+		629C964D1A63F4F600D808A5 /* DBLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLogin.h; sourceTree = "<group>"; };
+		62A1C8BC1A6458BA00012082 /* DBParseLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBParseLoginController.h; sourceTree = "<group>"; };
+		62A1C8BD1A6458BA00012082 /* DBParseLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBParseLoginController.m; sourceTree = "<group>"; };
 		62AABD101A5DCBC90064AF2C /* NSString+Email.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Email.h"; sourceTree = "<group>"; };
 		62AABD111A5DCBC90064AF2C /* NSString+Email.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Email.m"; sourceTree = "<group>"; };
 		62AABD161A5DCF680064AF2C /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
@@ -182,6 +188,7 @@
 			children = (
 				62AF31001A61703100331482 /* Info.plist */,
 				62AF31081A61890700331482 /* LoginTests.m */,
+				62390A9A1A62E54700039560 /* SignupTests.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -227,6 +234,9 @@
 				62C1137C1A5C7B8A0029A264 /* UIImage+Color.m */,
 				62AABD101A5DCBC90064AF2C /* NSString+Email.h */,
 				62AABD111A5DCBC90064AF2C /* NSString+Email.m */,
+				629C964D1A63F4F600D808A5 /* DBLogin.h */,
+				62A1C8BC1A6458BA00012082 /* DBParseLoginController.h */,
+				62A1C8BD1A6458BA00012082 /* DBParseLoginController.m */,
 				62C1135C1A5C595A0029A264 /* Main.storyboard */,
 				62C1135F1A5C595A0029A264 /* Images.xcassets */,
 				62C113611A5C595A0029A264 /* LaunchScreen.xib */,
@@ -457,6 +467,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62AF31091A61890700331482 /* LoginTests.m in Sources */,
+				62390A9B1A62E54700039560 /* SignupTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,6 +482,7 @@
 				62AABD1B1A5DD15D0064AF2C /* UIBarButtonItem+NavItem.m in Sources */,
 				62C113581A5C595A0029A264 /* AppDelegate.m in Sources */,
 				62AABD181A5DCF680064AF2C /* SignupViewController.m in Sources */,
+				62A1C8BE1A6458BA00012082 /* DBParseLoginController.m in Sources */,
 				62C113551A5C595A0029A264 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

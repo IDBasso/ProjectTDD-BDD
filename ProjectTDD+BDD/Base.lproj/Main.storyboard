@@ -386,7 +386,8 @@
                                                 <exclude reference="84U-Tc-yMh"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="200" y="0.0" width="1" height="45"/>
                                             <mask key="constraints">
                                                 <include reference="7Od-g0-b4p"/>
                                                 <include reference="84U-Tc-yMh"/>
@@ -395,6 +396,7 @@
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="49z-NB-n2d">
                                         <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                        <accessibility key="accessibilityConfiguration" label="firstname"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="184" id="QBS-ps-KQ8">
                                                 <variation key="heightClass=regular-widthClass=compact" constant="175"/>
@@ -402,7 +404,7 @@
                                             <constraint firstAttribute="height" constant="34" id="u1x-49-VBE"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="QBS-ps-KQ8"/>
@@ -415,14 +417,18 @@
                                                 <include reference="u1x-49-VBE"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <outlet property="delegate" destination="oF8-Yx-ODb" id="4um-c4-Wyt"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b6d-fF-RVr">
                                         <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                        <accessibility key="accessibilityConfiguration" label="email"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="zvE-7p-WbR"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="zvE-7p-WbR"/>
@@ -433,14 +439,18 @@
                                                 <include reference="zvE-7p-WbR"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <outlet property="delegate" destination="oF8-Yx-ODb" id="3kq-kE-59c"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password (min 6 characters)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4BG-5i-o2m">
                                         <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                        <accessibility key="accessibilityConfiguration" label="password"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="41" id="2yK-NR-F21"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="2yK-NR-F21"/>
@@ -451,6 +461,9 @@
                                                 <include reference="2yK-NR-F21"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <outlet property="delegate" destination="oF8-Yx-ODb" id="Wpi-Vx-REO"/>
+                                        </connections>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ehg-v8-otB">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -490,21 +503,26 @@
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UMa-w1-wGK">
                                         <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                        <accessibility key="accessibilityConfiguration" label="lastname"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="lfu-4k-901"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="lfu-4k-901"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="222" y="8" width="179" height="30"/>
                                             <mask key="constraints">
                                                 <include reference="lfu-4k-901"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <outlet property="delegate" destination="oF8-Yx-ODb" id="aKU-OC-AYl"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

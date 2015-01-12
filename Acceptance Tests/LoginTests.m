@@ -13,6 +13,8 @@
 #import "ViewController.h"
 #import <OCMock/OCMock.h>
 #import <Parse/Parse.h>
+#import <objc/runtime.h>
+#import "DBLogin.h"
 
 @interface LoginTests : KIFTestCase
 
@@ -23,6 +25,9 @@
 -(void)beforeAll
 {
   [tester waitForViewWithAccessibilityLabel:NSLocalizedString(@"Hello World", nil)];
+  [Parse setApplicationId:@"yAfWGQ6EHLqwHySHNNzJ646MX78gF5U3YRwBvYUi"
+                clientKey:@"eXxCsdRg8YvXd2B9KjseC0pPbqzJJIPtprO44etq"];
+
 }
 
 -(void)beforeEach
@@ -94,22 +99,12 @@
   XCTAssertTrue(loginButton.isEnabled);
 }
 
--(void)testOnDoneKeyWithRightCredentialsCallsLogin
-{
-  ViewController *loginViewController = (ViewController*)((UIView *)[tester waitForViewWithAccessibilityLabel:NSLocalizedString(@"login_view", nil)].nextResponder);
-  
-  id loginControllerMock = [OCMockObject partialMockForObject:loginViewController];
-  
-//  [[loginControllerMock expect] login];
-  [self testLoginIsEnabledWhenUsernameAndPasswordAreFilledIn];
-  [tester tapViewWithAccessibilityLabel:@"done"];
-  [loginControllerMock verify];
-  [tester tapViewWithAccessibilityLabel:@"OK"];
-}
-
 -(void)testLoginReturnsAccountWrongCredentials
 {
-  [self testLoginIsEnabledWhenUsernameAndPasswordAreFilledIn];
+  [self setupLoginControllerToRespondeWithError:[NSError errorWithDomain:@"Parse" code:101 userInfo:nil]];
+  [tester enterText:@"d@b.co" intoViewWithAccessibilityLabel:@"username"];
+  [tester enterText:@"1234567das" intoViewWithAccessibilityLabel:@"password"];
+
   [tester tapViewWithAccessibilityLabel:@"login"];
   [tester waitForViewWithAccessibilityLabel:@"Wrong username or password"];
   [tester tapViewWithAccessibilityLabel:@"OK"];
@@ -117,8 +112,9 @@
 
 -(void)testLoginReturnsAccountWrongPassword
 {
-  [tester enterText:@"d@basso.com" intoViewWithAccessibilityLabel:@"username"];
-  [tester enterText:@"1234567" intoViewWithAccessibilityLabel:@"password"];
+  [self setupLoginControllerToRespondeWithError:[NSError errorWithDomain:@"Parse" code:101 userInfo:nil]];
+  [tester enterText:@"d@b.co" intoViewWithAccessibilityLabel:@"username"];
+  [tester enterText:@"1234567das" intoViewWithAccessibilityLabel:@"password"];
   [tester tapViewWithAccessibilityLabel:@"login"];
   [tester waitForViewWithAccessibilityLabel:@"Wrong username or password"];
   [tester tapViewWithAccessibilityLabel:@"OK"];
@@ -126,12 +122,35 @@
 
 -(void)testLoginSuccessfullyPushNewViewController
 {
-  [tester enterText:@"d@basso.com" intoViewWithAccessibilityLabel:@"username"];
-  [tester enterText:@"123456" intoViewWithAccessibilityLabel:@"password"];
+
+  [self setupLoginControllerToRespondeWithError:nil];
+  [tester enterText:@"d@b.co" intoViewWithAccessibilityLabel:@"username"];
+  [tester enterText:@"123456asd" intoViewWithAccessibilityLabel:@"password"];
   [tester tapViewWithAccessibilityLabel:@"login"];
   [tester waitForViewWithAccessibilityLabel:@"loggedIn"];
   [tester tapViewWithAccessibilityLabel:@"Hello World"];
 }
+
+#pragma mark - DBLogin Controller
+
+-(void)setupLoginControllerToRespondeWithError:(NSError*)error
+{
+  id parseUser = OCMProtocolMock(@protocol(DBLogin));
+  
+  [[[parseUser stub] andDo:^(NSInvocation *invocation) {
+    
+    void (^ failBlock)(PFUser *user , NSError *error) = nil;
+    
+    [invocation getArgument:&failBlock atIndex:4];
+    failBlock( [PFUser currentUser], error);
+    
+  }] logInWithUsernameInBackground:[OCMArg any] password:[OCMArg any] block:[OCMArg any]];
+  
+  ViewController *loginViewController = (ViewController*)((UIView *)[tester waitForViewWithAccessibilityLabel:NSLocalizedString(@"login_view", nil)].nextResponder);
+  
+  [loginViewController setLoginController:parseUser];
+}
+
 
 #pragma mark - helper methods
 

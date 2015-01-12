@@ -7,13 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DBLogin.h"
 
 @interface ViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTexField;
 @property (weak, nonatomic) IBOutlet UILabel *inputsErrorMessage;
+@property (nonatomic) id<DBLogin> loginController;
+
 
 -(void)login;
+
+
 @end
 
