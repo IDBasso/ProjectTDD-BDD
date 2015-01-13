@@ -18,6 +18,7 @@
 
 
 -(void)login;
+- (IBAction)loginWithFacebook:(UIButton *)sender;
 
 
 @end

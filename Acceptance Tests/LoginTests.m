@@ -24,7 +24,7 @@
 
 -(void)beforeAll
 {
-  [tester waitForViewWithAccessibilityLabel:NSLocalizedString(@"Hello World", nil)];
+  [tester waitForViewWithAccessibilityLabel:NSLocalizedString(@"login_screen_title", nil)];
   [Parse setApplicationId:@"yAfWGQ6EHLqwHySHNNzJ646MX78gF5U3YRwBvYUi"
                 clientKey:@"eXxCsdRg8YvXd2B9KjseC0pPbqzJJIPtprO44etq"];
 
@@ -56,14 +56,14 @@
   [tester tapViewWithAccessibilityLabel:@"next"];
   
   //Then
-  [tester waitForViewWithAccessibilityLabel:@"Wrong email format"];
+  [tester waitForViewWithAccessibilityLabel:NSLocalizedString(@"email_format_error", nil)];
   
   UITextField *username = [self getUsernameTextfield];
   XCTAssertTrue(username.textColor == [UIColor redColor]);
   
   // After 4 seconds
   [tester waitForTimeInterval:4];
-  [tester waitForAbsenceOfViewWithAccessibilityLabel:@"Wrong email format"];
+  [tester waitForAbsenceOfViewWithAccessibilityLabel:NSLocalizedString(@"email_format_error", nil)];
   [tester waitForKeyInputReady];
 }
 
@@ -77,14 +77,14 @@
   [tester tapViewWithAccessibilityLabel:@"done"];
   
   //Then
-  [tester waitForViewWithAccessibilityLabel:@"Password is to short (min 6 characters)"];
+  [tester waitForViewWithAccessibilityLabel:NSLocalizedString(@"password_format_error", nil)];
   
   UITextField *password = [self getPasswordTextfield];
   XCTAssertTrue(password.textColor == [UIColor redColor]);
   
   // After 4 seconds
   [tester waitForTimeInterval:4];
-  [tester waitForAbsenceOfViewWithAccessibilityLabel:@"Password is to short (min 6 characters)"];
+  [tester waitForAbsenceOfViewWithAccessibilityLabel:NSLocalizedString(@"password_format_error", nil)];
   [tester waitForAbsenceOfSoftwareKeyboard];
 }
 
@@ -105,9 +105,9 @@
   [tester enterText:@"d@b.co" intoViewWithAccessibilityLabel:@"username"];
   [tester enterText:@"1234567das" intoViewWithAccessibilityLabel:@"password"];
 
-  [tester tapViewWithAccessibilityLabel:@"login"];
-  [tester waitForViewWithAccessibilityLabel:@"Wrong username or password"];
-  [tester tapViewWithAccessibilityLabel:@"OK"];
+  [tester tapViewWithAccessibilityLabel:NSLocalizedString(@"login_button_tittle", nil)];
+  [tester waitForViewWithAccessibilityLabel:NSLocalizedString(@"bad_authorization_error", nil)];
+  [tester tapViewWithAccessibilityLabel:NSLocalizedString(@"global_ok", nil)];
 }
 
 -(void)testLoginReturnsAccountWrongPassword
@@ -115,8 +115,8 @@
   [self setupLoginControllerToRespondeWithError:[NSError errorWithDomain:@"Parse" code:101 userInfo:nil]];
   [tester enterText:@"d@b.co" intoViewWithAccessibilityLabel:@"username"];
   [tester enterText:@"1234567das" intoViewWithAccessibilityLabel:@"password"];
-  [tester tapViewWithAccessibilityLabel:@"login"];
-  [tester waitForViewWithAccessibilityLabel:@"Wrong username or password"];
+  [tester tapViewWithAccessibilityLabel:NSLocalizedString(@"login_button_tittle", nil)];
+  [tester waitForViewWithAccessibilityLabel:NSLocalizedString(@"bad_authorization_error", nil)];
   [tester tapViewWithAccessibilityLabel:@"OK"];
 }
 
@@ -126,9 +126,9 @@
   [self setupLoginControllerToRespondeWithError:nil];
   [tester enterText:@"d@b.co" intoViewWithAccessibilityLabel:@"username"];
   [tester enterText:@"123456asd" intoViewWithAccessibilityLabel:@"password"];
-  [tester tapViewWithAccessibilityLabel:@"login"];
+  [tester tapViewWithAccessibilityLabel:NSLocalizedString(@"login_button_tittle", nil)];
   [tester waitForViewWithAccessibilityLabel:@"loggedIn"];
-  [tester tapViewWithAccessibilityLabel:@"Hello World"];
+  [tester tapViewWithAccessibilityLabel:NSLocalizedString(@"login_screen_title", nil)];
 }
 
 #pragma mark - DBLogin Controller
@@ -146,7 +146,7 @@
     
   }] logInWithUsernameInBackground:[OCMArg any] password:[OCMArg any] block:[OCMArg any]];
   
-  ViewController *loginViewController = (ViewController*)((UIView *)[tester waitForViewWithAccessibilityLabel:NSLocalizedString(@"login_view", nil)].nextResponder);
+  ViewController *loginViewController = (ViewController*)((UIView *)[tester waitForViewWithAccessibilityLabel:@"login_view"].nextResponder);
   
   [loginViewController setLoginController:parseUser];
 }
@@ -166,7 +166,7 @@
 
 -(UIBarButtonItem*)getLoginButton
 {
-  return (UIBarButtonItem*)[tester waitForViewWithAccessibilityLabel:@"login"];
+  return (UIBarButtonItem*)[tester waitForViewWithAccessibilityLabel:NSLocalizedString(@"login_button_tittle", nil)];
 }
 
 -(void)resetUsernameAndPassword

@@ -28,7 +28,7 @@
 #pragma mark - life cycle
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.title = NSLocalizedString(@"Hello World", nil);
+  self.title = NSLocalizedString(@"login_screen_title", nil);
   self.usernameTextField.delegate = self;
   self.passwordTexField.delegate = self;
   
@@ -65,7 +65,7 @@
 {
   _loginButton = [UIBarButtonItem buttonWithTitle:@"login" selector:@selector(login) target:self];
   [_loginButton setIsAccessibilityElement:YES];
-  _loginButton.accessibilityLabel = @"login";
+  _loginButton.accessibilityLabel = NSLocalizedString(@"login_button_tittle", nil);
   self.navigationItem.rightBarButtonItem = _loginButton;
   [self updateLoginButton];
 }
@@ -134,7 +134,7 @@
   UITextField *usernameTextfield = [self usernameTextField];
   if (![usernameTextfield.text isValidEmail]) {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    self.inputsErrorMessage.text = NSLocalizedString(@"Wrong email format", nil);
+    self.inputsErrorMessage.text = NSLocalizedString(@"email_format_error", nil);
     self.inputsErrorMessage.textColor = [UIColor redColor];
     [self.inputsErrorMessage setHidden:NO];
     self.usernameTextField.textColor = [UIColor redColor];
@@ -147,7 +147,7 @@
   UITextField *password = [self passwordTexField];
   if (password.text.length < 6) {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    self.inputsErrorMessage.text = NSLocalizedString(@"Password is to short (min 6 characters)", nil);
+    self.inputsErrorMessage.text = NSLocalizedString(@"password_format_error", nil);
     self.inputsErrorMessage.textColor = [UIColor redColor];
     [self.inputsErrorMessage setHidden:NO];
     self.passwordTexField.textColor = [UIColor redColor];
@@ -163,26 +163,26 @@
 
 -(void)login
 {
-  [self.loginController logInWithUsernameInBackground:self.usernameTextField.text password:self.passwordTexField.text block:^(PFUser * user, NSError * error)
+  [self.loginController logInWithUsernameInBackground:self.usernameTextField.text password:self.passwordTexField.text block:^(NSObject * user, NSError * error)
   {
     if (error) {
       NSString *errorMessage;
       switch (error.code) {
         case 101:
-          errorMessage = @"Wrong username or password";
+          errorMessage = NSLocalizedString(@"bad_authorization_error", nil);
           break;
         case 100:
-          errorMessage = @"The connection to the server failed";
+          errorMessage = NSLocalizedString(@"server_connection_error", nil);
           break;
         case 1:
-          errorMessage = @"Server internal error";
+          errorMessage = NSLocalizedString(@"server_internal_error", nil);
           break;
         default:
           break;
       }
       NSLog(@"error : %@", [error description]);
       
-      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:errorMessage delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"errror_title", <#comment#>) message:errorMessage delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"global_ok", nil), nil];
       [alertView show];
     }else
     {
@@ -191,6 +191,14 @@
       loggedInViewController.view.backgroundColor = [UIColor greenColor];
       [loggedInViewController.view setIsAccessibilityElement:YES];
       [self.navigationController pushViewController:loggedInViewController animated:YES];
+    }
+  }];
+}
+
+- (IBAction)loginWithFacebook:(UIButton *)sender {
+  [self.loginController loginWithFacebookAndCompletionBlock:^(NSObject * user, NSError * error) {
+    if (error) {
+      NSLog(@"error %@", [error description]);
     }
   }];
 }
